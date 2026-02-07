@@ -28,7 +28,7 @@
         
         body {
             font-family: 'Karla', sans-serif;
-            background-color: var(--ghost-white);
+            background-color: #FFF5F7;
             color: var(--jet-black);
             line-height: 1.6;
             overflow-x: hidden;
@@ -114,7 +114,7 @@
             border: none;
             position: relative;
             transition: var(--transition);
-            border-bottom: 3px solid transparent;
+            border-bottom: 1px solid transparent;
         }
         
         .tab-button:hover {
@@ -123,7 +123,7 @@
         
         .tab-button.active {
             color: var(--olive-wood);
-            border-bottom-color: var(--olive-wood);
+            border-bottom-color: 1px solid var(--olive-wood);
         }
         
         .scroll-indicator {
@@ -157,11 +157,31 @@
             padding: 0;
         }
         
-        /* Accordion Sections */
-        .accordion-section {
-            border-bottom: 2px solid var(--dark-slate);
-            overflow: hidden;
-        }
+   /* Accordion Sections */
+.accordion-section {
+    border-bottom: 2px solid var(--dark-slate);
+    overflow: hidden;
+    position: relative;
+}
+
+.accordion-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(9, 35, 39, 0.02) 2px, rgba(9, 35, 39, 0.02) 4px);
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.section-inner {
+    position: relative;
+    z-index: 1;
+}
         
         .accordion-section:last-child {
             border-bottom: none;
