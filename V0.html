@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understory Films - Award-Winning Documentary & Narrative Films</title>
+    <meta name="description" content="Understory Films creates impactful, story-driven documentaries and narrative films. Based in Vancouver, BC.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --jet-black: #092327;
+            --dark-slate: #0B5351;
+            --olive-wood: #826754;
+            --ghost-white: #FDFBED;
+            --deep-crimson: #931621;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Karla', sans-serif;
+            background-color: var(--ghost-white);
+            color: var(--jet-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(135deg, var(--ghost-white) 0%, rgba(11, 83, 81, 0.05) 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(9, 35, 39, 0.02) 2px, rgba(9, 35, 39, 0.02) 4px);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4.8vw, 4.2rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            color: var(--jet-black);
+            margin-bottom: 1.5rem;
+            position: relative;
+            animation: fadeInUp 1.2s ease-out;
+            text-align: center;
+        }
+        
+        .tagline {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 300;
+            color: var(--dark-slate);
+            text-align: center;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+            animation: fadeInUp 1.2s ease-out 0.2s backwards;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            color: var(--olive-wood);
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+        }
+        
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.2s ease-out 0.4s backwards;
+            border-bottom: 1px solid var(--dark-slate);
+        }
+        
+        .tab-button {
+            padding: 1rem 2.5rem;
+            font-family: 'Karla', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            background-color: transparent;
+            color: var(--jet-black);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-button:hover {
+            color: var(--dark-slate);
+        }
+        
+        .tab-button.active {
+            color: var(--olive-wood);
+            border-bottom-color: var(--olive-wood);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+            font-size: 0.85rem;
+            color: var(--dark-slate);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 1.5rem;
+            color: var(--dark-slate);
+        }
+        
+        /* Main Content Container */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        /* Accordion Sections */
+        .accordion-section {
+            border-bottom: 2px solid var(--dark-slate);
+            overflow: hidden;
+        }
+        
+        .accordion-section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-header {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            position: relative;
+            background-color: var(--ghost-white);
+        }
+        
+        .section-header:hover {
+            background-color: rgba(11, 83, 81, 0.05);
+        }
+        
+        .section-header.active {
+            background-color: var(--jet-black);
+        }
+        
+        .section-header.active .section-title,
+        .section-header.active .accordion-icon {
+            color: var(--ghost-white);
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            color: var(--jet-black);
+            letter-spacing: 0.02em;
+            transition: var(--transition);
+        }
+        
+        .accordion-icon {
+            font-size: 2.5rem;
+            color: var(--dark-slate);
+            transition: var(--transition);
+            line-height: 1;
+        }
+        
+        .section-header.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+        
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: var(--ghost-white);
+        }
+        
+        .section-content.active {
+            max-height: 10000px;
+        }
+        
+        .section-inner {
+            padding: 4rem 2rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* About Section Content */
+        .about-grid {
+            display: grid;
+            gap: 3rem;
+            max-width: 900px;
+        }
+        
+        .about-grid p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-slate);
+        }
+        
+        .about-grid em {
+            font-style: italic;
+            color: var(--jet-black);
+        }
+        
+        .founders {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--dark-slate);
+        }
+        
+        .founders h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--jet-black);
+            margin-bottom: 2rem;
+        }
+        
+        .founder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .founder-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--jet-black);
+            margin-bottom: 0.5rem;
+        }
+        
+        .founder-card p {
+            font-size: 0.95rem;
+            color: var(--dark-slate);
+        }
+        
+        /* Films Section Content */
+        .film-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+        }
+        
+        .film-card {
+            background-color: rgba(9, 35, 39, 0.03);
+            border: 1px solid var(--dark-slate);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .film-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--dark-slate) 0%, var(--olive-wood) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ghost-white);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            opacity: 0.4;
+        }
+        
+        .film-card-content {
+            padding: 2.5rem;
+        }
+        
+        .film-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background-color: var(--deep-crimson);
+            transition: var(--transition);
+        }
+        
+        .film-card:hover::before {
+            width: 100%;
+        }
+        
+        .film-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(9, 35, 39, 0.15);
+        }
+        
+        .film-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--jet-black);
+        }
+        
+        .film-meta {
+            font-size: 0.85rem;
+            color: var(--olive-wood);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .film-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--dark-slate);
+            margin-bottom: 1.5rem;
+        }
+        
+        .film-credits {
+            font-size: 0.95rem;
+            color: var(--dark-slate);
+            line-height: 1.6;
+            padding-top: 1rem;
+            border-top: 1px solid var(--dark-slate);
+        }
+        
+        .film-credits strong {
+            color: var(--jet-black);
+        }
+        
+        .film-awards {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(11, 83, 81, 0.08);
+            font-size: 0.9rem;
+            color: var(--dark-slate);
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        /* Press Section Content */
+        .press-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-slate);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+        
+        .press-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .press-card {
+            background-color: rgba(9, 35, 39, 0.03);
+            border: 1px solid var(--dark-slate);
+            overflow: hidden;
+            transition: var(--transition);
+            text-decoration: none;
+            display: block;
+        }
+        
+        .press-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(9, 35, 39, 0.1);
+        }
+        
+        .press-card:hover .press-thumbnail {
+            opacity: 0.9;
+        }
+        
+        .press-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--olive-wood) 0%, var(--dark-slate) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ghost-white);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            opacity: 0.3;
+            transition: var(--transition);
+        }
+        
+        .press-card-content {
+            padding: 1.5rem;
+        }
+        
+        .press-date {
+            font-size: 0.8rem;
+            color: var(--olive-wood);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .press-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--jet-black);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .press-source {
+            font-size: 0.9rem;
+            color: var(--dark-slate);
+            font-style: italic;
+        }
+        
+        /* Contact Section Content */
+        .contact-grid {
+            display: block;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            text-align: left;
+        }
+        
+        .contact-block h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--jet-black);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-block:first-child h3 {
+            margin-top: 0;
+        }
+        
+        .contact-block p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--dark-slate);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-block a {
+            color: var(--deep-crimson);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .contact-block a:hover {
+            border-bottom-color: var(--deep-crimson);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            color: var(--jet-black);
+            font-size: 0.95rem;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--dark-slate);
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .social-link:hover {
+            background-color: var(--jet-black);
+            color: var(--ghost-white);
+            border-color: var(--jet-black);
+        }
+        
+        .land-acknowledgement {
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: var(--dark-slate);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background-color: rgba(11, 83, 81, 0.08);
+            border-left: 3px solid var(--dark-slate);
+            text-align: left;
+        }
+        
+        .land-acknowledgement strong {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--jet-black);
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--jet-black);
+            color: var(--olive-wood);
+            padding: 4rem 2rem 3rem;
+            margin-top: 0;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .supporters {
+            margin-bottom: 2.5rem;
+        }
+        
+        .supporters-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--ghost-white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .supporters-list {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            opacity: 0.4;
+        }
+        
+        .logo-placeholder {
+            height: 60px;
+            background-color: rgba(232, 233, 243, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+            
+            .tab-navigation {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .tab-button {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section-header {
+                padding: 1rem 1.5rem;
+            }
+            
+            .section-inner {
+                padding: 3rem 1.5rem 4rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .accordion-icon {
+                font-size: 2rem;
+            }
+            
+            .film-image-placeholder {
+                height: 250px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+            }
+            
+            .founder-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .press-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .land-acknowledgement {
+                padding: 1.5rem;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="logo">
+    <img src="https://raw.githubusercontent.com/understoryfilms/Understory/main/UnderstoryLogo.png" alt="Understory Films" style="max-width: 500px; width: 90%; height: auto; display: block; margin: 0 auto;">
+</h1>
+        <p class="tagline">Award-winning documentaries and narrative films that dive beneath the surface</p>
+        
+        <!-- Tab Navigation -->
+        <nav class="tab-navigation">
+            <button class="tab-button" onclick="scrollToSection('about')">About Us</button>
+            <button class="tab-button" onclick="scrollToSection('films')">Work</button>
+            <button class="tab-button" onclick="scrollToSection('press')">Press</button>
+            <button class="tab-button" onclick="scrollToSection('contact')">Contact</button>
+        </nav>
+        
+        <div class="scroll-indicator" onclick="scrollToContent()">Explore</div>
+    </section>
+
+    <!-- Main Content with Accordion Sections -->
+    <main class="main-content">
+        
+        <!-- About Section -->
+        <section id="about" class="accordion-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">About</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="about-grid">
+                        <p>Understory Films was founded in 2021 by Sepehr Samimi and Jen Muranetz and is dedicated to making award-winning, impactful, and story-driven documentaries and narrative films. We are based on the unceded and ancestral territories of the Musqueam, Squamish and Tsleil-Waututh First Nations, known as Vancouver, BC.</p>
+                        
+                        <p>The phrase <em>"Understory"</em> refers to the layers of plants and undergrowth covering a forest floor. Mirroring the natural world, our films dive below the canopy to create meaningful, critical, and thought-provoking subjects, with an aim to spark discussion and shift perspectives on critical social, environmental, and political issues of our time.</p>
+                        
+                        <p>Our works have screened in film festivals worldwide. We've been supported by Telefilm Canada, Creative BC, Canada Council for the Arts, BC Arts Council, and the National Film Board of Canada. Our team has participated in programs such as Hot Docs Accelerator, Canadian Creative Accelerator, DOC NYC Voices of Canada, and Whistler Docs Lab.</p>
+                        
+                        <div class="founders">
+                            <h3>Founders</h3>
+                            <div class="founder-grid">
+                                <div class="founder-card">
+                                    <h4>Sepehr Samimi</h4>
+                                    <p>Co-Founder, Producer & Cinematographer</p>
+                                </div>
+                                <div class="founder-card">
+                                    <h4>Jen Muranetz</h4>
+                                    <p>Co-Founder, Director & Producer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Films Section -->
+        <section id="films" class="accordion-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">Work</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="film-grid">
+                        
+                        <!-- Judas Tree -->
+                        <div class="film-card">
+                            <img src="https://raw.githubusercontent.com/understoryfilms/Understory/main/JudasTree.jpg" alt="Judas Tree" style="width: 100%; height: auto; display: block;">
+                            <div class="film-card-content">
+                                <h3 class="film-title">Judas Tree</h3>
+                                <div class="film-meta">2027 | Scripted Feature | In Pre-Production</div>
+                                <p class="film-description">A political psychological drama following an Iranian-Canadian woman whose quiet life is upended when she must decide whether to testify against her former interrogator, confronting the haunting consequences of exile, justice, and silence.</p>
+                                <div class="film-credits">
+                                    <strong>Director:</strong> Susan Bayani<br>
+                                    <strong>Producers:</strong> Sepehr Samimi & Nach Dudsdeemaytha
+                                </div>
+                                <div class="film-awards">
+                                    Funded by Telefilm Canada, Creative BC<br>
+                                    Produced in conjunction with Musubi Arts and Scythia Films
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Light Through the Blindfold -->
+                        <div class="film-card">
+                            <img src="https://github.com/understoryfilms/Understory/blob/main/LTB.jpg?raw=true" alt="Light Through the Blindfold" style="width: 100%; height: auto; display: block;">
+                            <div class="film-card-content">
+                                <h3 class="film-title">Light Through the Blindfold</h3>
+                                <div class="film-meta">2025 | 25 Minutes | Documentary Short</div>
+                                <p class="film-description">An Iranian-Canadian goalball athlete with only five percent vision is offered a life-changing surgery. As the possibility of seeing again stirs old memories and new dreams, she must confront what sight truly means to her.</p>
+                                <div class="film-credits">
+                                    <strong>Written & Directed by:</strong> Alireza Kazemipour<br>
+                                    <strong>Produced by:</strong> Sina Nazarian & Sepehr Samimi<br>
+                                    <strong>Director of Photography:</strong> Sepehr Samimi
+                                </div>
+                                <div class="film-awards">
+                                    World & International Premiere: 2025
+                                </div>
+                            </div>
+                            <div style="padding:56.25% 0 0 0;position:relative;">
+                                <iframe src="https://player.vimeo.com/video/1126683630?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Light Through the Blindfold"></iframe>
+                            </div>
+                            <script src="https://player.vimeo.com/api/player.js"></script>
+                        </div>
+                        
+                        <!-- Fairy Creek -->
+                        <div class="film-card">
+                            <img src="https://raw.githubusercontent.com/understoryfilms/Understory/main/FairyCreek.jpg" alt="Fairy Creek" style="width: 100%; height: auto; display: block;">
+                            <div class="film-card-content">
+                                <h3 class="film-title">Fairy Creek</h3>
+                                <div class="film-meta">2024 | 78 Minutes | Documentary Feature</div>
+                                <p class="film-description">A gripping frontline dive into the lives of activists urgently blocking logging roads on Vancouver Island, Canada, in a last-ditch attempt to stop old-growth logging in the pristine Fairy Creek valley.</p>
+                                <div class="film-credits">
+                                    <strong>Director:</strong> Jen Muranetz<br>
+                                    <strong>Producers:</strong> Jen Muranetz & Sepehr Samimi<br>
+                                    <strong>Executive Producers:</strong> Mark Achbar, Mitchell Steinke, Neal Livingston
+                                </div>
+                                <div class="film-awards">
+                                    🏆 Best Canadian Feature – Planet in Focus 2024<br>
+                                    🏆 Conservation Award Feature – Maine Outdoor Film Festival 2025<br>
+                                    🏆 Best Music Score – Leo Awards 2025<br>
+                                    Nominee: Best Cinematography – Leo Awards 2025
+                                </div>
+                            </div>
+                            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
+                                <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube-nocookie.com/embed/t4b7uwIEJAs" title="Fairy Creek Documentary Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        
+                        <!-- Abundance -->
+                        <div class="film-card">
+                            <img src="https://github.com/understoryfilms/Understory/blob/main/Abundance.jpg?raw=true" alt="Abundance" style="width: 100%; height: auto; display: block;">
+                            <div class="film-card-content">
+                                <h3 class="film-title">Abundance</h3>
+                                <div class="film-meta">2023 | 29 Minutes | Documentary Short</div>
+                                <p class="film-description">An ancient Persian poem becomes the inspiration for a community on a path of personal growth, healing, and better relationship to the earth. A collection of cinematic portraits exploring the people living at Abundance Community Farm near Vancouver, BC.</p>
+                                <div class="film-credits">
+                                    <strong>A film by:</strong> Sepehr Samimi<br>
+                                    <strong>Editor:</strong> Jen Muranetz<br>
+                                    <strong>Animation:</strong> Natty Boonmasiri
+                                </div>
+                                <div class="film-awards">
+                                    Funded by Canada Council for the Arts
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Press Section -->
+        <section id="press" class="accordion-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">Press</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <p class="press-intro">Our films and projects have been featured in industry publications and media outlets. Below is a selection of recent press coverage.</p>
+                    
+                    <div class="press-grid">
+                        
+                        <a href="#" class="press-card" target="_blank">
+                            <div class="press-thumbnail">
+                                <!-- Replace with: <img src="images/press/widc.jpg" alt="WIDC" style="width: 100%; height: 100%; object-fit: cover;"> -->
+                                WIDC
+                            </div>
+                            <div class="press-card-content">
+                                <div class="press-date">December 4, 2025</div>
+                                <h3 class="press-headline">Susan Bayani Receives 2025 Women In the Director's Chair Feature Film Award</h3>
+                                <p class="press-source">Women in the Director's Chair (WIDC)</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="press-card" target="_blank">
+                            <div class="press-thumbnail">
+                                <!-- Replace with: <img src="images/press/creative-bc.jpg" alt="Creative BC" style="width: 100%; height: 100%; object-fit: cover;"> -->
+                                CBC
+                            </div>
+                            <div class="press-card-content">
+                                <div class="press-date">November 5, 2025</div>
+                                <h3 class="press-headline">Fourteen B.C. film projects receive $1.4M in production financing from Creative BC</h3>
+                                <p class="press-source">Creative BC</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="press-card" target="_blank">
+                            <div class="press-thumbnail">
+                                <!-- Replace with: <img src="images/press/telefilm-1.jpg" alt="Telefilm" style="width: 100%; height: 100%; object-fit: cover;"> -->
+                                TFC
+                            </div>
+                            <div class="press-card-content">
+                                <div class="press-date">June 16, 2025</div>
+                                <h3 class="press-headline">Telefilm Canada invests over $14.4 million in 27 low-budget projects in the English market</h3>
+                                <p class="press-source">Telefilm Canada</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="press-card" target="_blank">
+                            <div class="press-thumbnail">
+                                <!-- Replace with: <img src="images/press/playback-1.jpg" alt="Playback" style="width: 100%; height: 100%; object-fit: cover;"> -->
+                                PB
+                            </div>
+                            <div class="press-card-content">
+                                <div class="press-date">June 16, 2025</div>
+                                <h3 class="press-headline">Telefilm allocates $14.4M to 27 English market films</h3>
+                                <p class="press-source">Playback Magazine</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="press-card" target="_blank">
+                            <div class="press-thumbnail">
+                                <!-- Replace with: <img src="images/press/playback-2.jpg" alt="Playback" style="width: 100%; height: 100%; object-fit: cover;"> -->
+                                PB
+                            </div>
+                            <div class="press-card-content">
+                                <div class="press-date">February 12, 2025</div>
+                                <h3 class="press-headline">Creative BC selects 25 projects for development support</h3>
+                                <p class="press-source">Playback Magazine</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="press-card" target="_blank">
+                            <div class="press-thumbnail">
+                                <!-- Replace with: <img src="images/press/pov.jpg" alt="POV" style="width: 100%; height: 100%; object-fit: cover;"> -->
+                                POV
+                            </div>
+                            <div class="press-card-content">
+                                <div class="press-date">August 8, 2024</div>
+                                <h3 class="press-headline">21 Documentaries Tapped for Funding from Telefilm Canada</h3>
+                                <p class="press-source">POV Magazine</p>
+                            </div>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="accordion-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">Contact</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="contact-grid">
+                        <div class="contact-block">
+
+    <h3>Get In Touch</h3>
+    <p>We're always interested in connecting with collaborators, festival programmers, and audiences who share our passion for meaningful storytelling.</p>
+    <p>
+        <a href="mailto:understorydocs@gmail.com">Email</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://www.instagram.com/undrstory/" target="_blank">Instagram</a>
+    </p>
+</div>
+                    
+                    <div class="land-acknowledgement">
+                        <strong>Land Acknowledgement</strong>
+                        We respectfully acknowledge our work at Understory Films occurs on the unceded, ancestral territories of the Coast Salish peoples, including the xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh Úxwumixw (Squamish) and səl̓ilwətaɁɬ (Tsleil-Waututh) First Nations. It's an honour to live, work and play on these lands. We have these words on this website to acknowledge the inadequacy of the words themselves and as a reminder for ourselves and other settlers to take active steps towards decolonization, ecological justice, and support of Indigenous sovereignty.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="supporters">
+                <h3 class="supporters-title">Supported By</h3>
+                <p class="supporters-list">
+                    Telefilm Canada • Creative BC • Canada Council for the Arts • BC Arts Council • National Film Board of Canada • Cinema Politica • Telus Originals • Small Change Fund
+                </p>
+                <!-- Logo Grid - Replace placeholders with actual images -->
+     <!--
+                <div class="logo-grid">
+                    <div class="logo-placeholder">
+                       <!-- <img src="images/logos/telefilm.png" alt="Telefilm Canada"> -->
+                        Telefilm
+                    </div>
+                    <div class="logo-placeholder">
+                        <!-- <img src="images/logos/creative-bc.png" alt="Creative BC"> -->
+                        Creative BC
+                    </div>
+                    <div class="logo-placeholder">
+                        <!-- <img src="images/logos/canada-council.png" alt="Canada Council"> -->
+                        Canada Council
+                    </div>
+                    <div class="logo-placeholder">
+                        <!-- <img src="images/logos/bc-arts.png" alt="BC Arts Council"> -->
+                        BC Arts
+                    </div>
+                    <div class="logo-placeholder">
+                        <!-- <img src="images/logos/nfb.png" alt="NFB"> -->
+                        NFB
+                    </div>
+                    <div class="logo-placeholder">
+                        <!-- <img src="images/logos/cinema-politica.png" alt="Cinema Politica"> -->
+                        Cinema Politica
+                    </div>
+                    <div class="logo-placeholder">
+                        <!-- <img src="images/logos/telus.png" alt="Telus Originals"> -->
+                        Telus
+                    </div>
+                    <div class="logo-placeholder">
+                        <!-- <img src="images/logos/small-change.png" alt="Small Change Fund"> -->
+                        Small Change 
+                   </div> 
+                </div> 
+        -->
+            </div>
+            <p class="copyright">© 2026 Understory Films Inc.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Toggle accordion sections
+        function toggleSection(header) {
+            const section = header.parentElement;
+            const content = section.querySelector('.section-content');
+            const allSections = document.querySelectorAll('.accordion-section');
+            
+            // Close all other sections
+            allSections.forEach(sec => {
+                if (sec !== section) {
+                    sec.querySelector('.section-header').classList.remove('active');
+                    sec.querySelector('.section-content').classList.remove('active');
+                }
+            });
+            
+            // Toggle current section
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+        
+        // Scroll to content when clicking scroll indicator
+        function scrollToContent() {
+            document.querySelector('.main-content').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // Scroll to section and open it
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const header = section.querySelector('.section-header');
+            const content = section.querySelector('.section-content');
+            
+            // Close all sections first
+            document.querySelectorAll('.accordion-section').forEach(sec => {
+                sec.querySelector('.section-header').classList.remove('active');
+                sec.querySelector('.section-content').classList.remove('active');
+            });
+            
+            // Open the target section
+            header.classList.add('active');
+            content.classList.add('active');
+            
+            // Scroll to section
+            section.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // Update active tab on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.accordion-section');
+            const tabs = document.querySelectorAll('.tab-button');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            tabs.forEach(tab => {
+                    tab.classList.remove('active');
+                if (tab.getAttribute('onclick').includes(currentSection)) {
+                    tab.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
